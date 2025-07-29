@@ -1,7 +1,7 @@
 import os
 import datetime
 import dropbox
-import openai
+from openai import OpenAI
 import smtplib
 from email.mime.text import MIMEText
 
@@ -29,14 +29,21 @@ def fetch_and_concatenate_files(dbx, paths):
     return "\n\n".join(texts)
 
 def summarize(text):
-    response = openai.ChatCompletion.create(
+    client = OpenAI()
+    response = client.responses.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "以下はある一日の複数のメモ・日記・感想文です。全体を見て、要点と#できたことをMarkdown形式でまとめてください。"},
-            {"role": "user", "content": text}
+        input=[
+            {
+                "role": "system",
+                "content": "以下はある一日の複数のメモ・日記・感想文です。全体を見て、要点と#できたことをMarkdown形式でまとめてください。"
+            },
+            {
+                "role": "user",
+                "content": text
+            }
         ]
     )
-    return response.choices[0].message.content.strip()
+    return response.output_text
 
 def send_email(subject, body):
     from_email = os.environ["GMAIL_USER"]
