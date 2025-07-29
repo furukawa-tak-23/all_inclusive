@@ -29,7 +29,9 @@ def fetch_and_concatenate_files(dbx, paths):
     return "\n\n".join(texts)
 
 def summarize(text):
-    client = OpenAI()
+    client = OpenAI(
+        api_key = os.environ["OPENAI_API_KEY"]
+    )
     response = client.responses.create(
         model="gpt-3.5-turbo",
         input=[
@@ -60,7 +62,6 @@ def send_email(subject, body):
         smtp.send_message(msg)
 
 def main():
-    openai.api_key = os.environ["OPENAI_API_KEY"]
     dbx = dropbox.Dropbox(os.environ["DROPBOX_TOKEN"])
     all_output = []
 
