@@ -28,7 +28,7 @@ jobs:
           ls -la
 
       - name: Run summarizer
-        run: python summarize.py
+        run: python 20250729_diary-summary-bot/summarize.py
         env:
           DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
