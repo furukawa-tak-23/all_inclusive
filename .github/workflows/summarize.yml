@@ -21,7 +21,8 @@ jobs:
         run: pip install openai dropbox
 
       - name: Run summarizer
-        run: python ./20250729_diary-summary-bot/summarize.py
+        working-directory: ./20250729_diary-summary-bot
+        run: python summarize.py
         env:
           DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
