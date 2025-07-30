@@ -62,8 +62,17 @@ def send_email(subject, body):
         smtp.login(from_email, app_password)
         smtp.send_message(msg)
 
+def get_dropbox_client():
+    dbx = dropbox.Dropbox(
+        oauth2_access_token=os.environ["DROPBOX_TOKEN"],
+        app_key=os.environ["DROPBOX_APP_KEY"],
+        app_secret=os.environ["DROPBOX_APP_SECRET"],
+        oauth2_refresh_token=os.environ["DROPBOX_REFRESH_TOKEN"]
+    )
+    return dbx
+
 def main():
-    dbx = dropbox.Dropbox(os.environ["DROPBOX_TOKEN"])
+    dbx = get_dropbox_client()
     all_output = []
 
     for date in get_target_dates():
