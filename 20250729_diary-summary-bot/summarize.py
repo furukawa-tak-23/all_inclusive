@@ -38,7 +38,7 @@ def summarize(text):
         input=[
             {
                 "role": "system",
-                "content": "以下はある一日の複数のメモ・日記・感想文です。全体を見て、要点と#できたことをMarkdown形式でまとめてください。"
+                "content": "以下はある一日の複数のメモ・日記・感想文です。全体を見て要点をまとめてください。"
             },
             {
                 "role": "user",
