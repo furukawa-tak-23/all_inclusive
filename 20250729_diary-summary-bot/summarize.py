@@ -9,7 +9,7 @@ def get_target_dates():
     today = datetime.date.today()
     three_months_ago = today - datetime.timedelta(days=90)
     one_month_ago = today - datetime.timedelta(days=30)
-    return [three_months_ago, one_month_ago]
+    return [one_month_ago, three_months_ago]
 
 def find_files_for_date(dbx, date):
     year_month = date.strftime("%Y-%m")
