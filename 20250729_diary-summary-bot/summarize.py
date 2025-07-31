@@ -16,7 +16,6 @@ def find_files_for_date(dbx, date):
     day_prefix = date.strftime("%Y-%m-%d")
     folder = f"/99999999_メモ、日記/{year_month}"
     files = []
-    print(dbx)
     for entry in dbx.files_list_folder(folder).entries:
         if entry.name.startswith(day_prefix) and entry.name.endswith(".md"):
             files.append(f"{folder}/{entry.name}")
