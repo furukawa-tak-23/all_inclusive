@@ -7,11 +7,11 @@ from email.mime.text import MIMEText
 
 def get_target_dates():
     today = datetime.date.today()
-    three_months_ago = today - datetime.timedelta(days=90)
+    four_months_ago = today - datetime.timedelta(days=120)
     one_month_ago = today - datetime.timedelta(days=30)
     one_year_ago = today.replace(year=today.year - 1)
     two_years_ago = today.replace(year=today.year - 2)
-    return [one_month_ago, three_months_ago, one_year_ago, two_years_ago]
+    return [one_month_ago, four_months_ago, one_year_ago, two_years_ago]
 
 def find_files_for_date(dbx, date):
     year = date.strftime("%Y")
