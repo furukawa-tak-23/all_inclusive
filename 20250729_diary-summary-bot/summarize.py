@@ -9,12 +9,15 @@ def get_target_dates():
     today = datetime.date.today()
     three_months_ago = today - datetime.timedelta(days=90)
     one_month_ago = today - datetime.timedelta(days=30)
-    return [one_month_ago, three_months_ago]
+    one_year_ago = today.replace(year=today.year - 1)
+    two_years_ago = today.replace(year=today.year - 2)
+    return [one_month_ago, three_months_ago, one_year_ago, two_years_ago]
 
 def find_files_for_date(dbx, date):
+    year = date.strftime("%Y")
     year_month = date.strftime("%Y-%m")
     day_prefix = date.strftime("%Y-%m-%d")
-    folder = f"/99999999_メモ、日記/{year_month}"
+    folder = f"/99999999_メモ、日記/{year}/{year_month}"
     files = []
     for entry in dbx.files_list_folder(folder).entries:
         if entry.name.startswith(day_prefix) and entry.name.endswith(".md"):
